@@ -11,17 +11,22 @@ console.log(book.title + book.author + book.pages + book.read());
 
 //////////////////////////////////////////////////////////
 
-const newAccount = new Account("Kostas Minaidis");
-// New account created for: Kostas Minaidis
-// IBAN: GR00010003
-
-newAccount.getBalance()     // 0
-newAccount.deposit(100)
-newAccount.getBalance()     // 100
-newAccount.withdraw(50)
-newAccount.getBalance()     // 50
-
-newAccount.withdraw(500)   // Error 'Insufficient balance!'
-newAccount.withdraw("50")  // Error 'Invalid amount'
-newAccount.withdraw(-150)  // Error 'Invalid amount'
-/////////////////////////////////////////////////////////////////
+let newAccount = {
+    name: "Kostas Minaidis",
+    balance: 100,
+    withdrow: function (amount) {
+        if (this.balance - amount >= 0) {
+            this.balance = this.balance - amount;
+            return this.name + " your new balance is " + this.balance;
+        } else {
+            return "go home poor " + this.name;
+        }
+    },
+    deposit: function (amount) {
+        this.balance = this.balance + amount;
+        return this.name + " your new balance is " + this.balance;
+    },
+    getBalance: function () {
+        return this.name + " your balance is " + this.balance;
+    },
+};
